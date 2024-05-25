@@ -142,4 +142,18 @@ oc apply -f deploy.yaml
   oc get routes
 ```
 
+## Come creare una gestione delle App Liberty con Argocd 
+### Per prima cosa bisgna fare apply del [**bootstrap-argocd.yaml**]()
+
+```sh
+oc apply -f bootstrap-argocd.yaml
+```
+
+## Nota per problemi con Argocd 
+
+### potrebbe esserci un problema con il service account di argocd che non ha i permessi di fare apply dei file di configurazioni delle applicazioni , in tal caso bisogna aggiungere i permessi al corretto service Role con questo comando:
+
+```sh
+oc adm policy add-role-to-user admin system:serviceaccount:openshift-gitops:openshift-gitops-otp-argocd-application-controller -n libertydemowithargo
+```
 
