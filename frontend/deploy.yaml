@@ -1,0 +1,47 @@
+apiVersion: apps.openliberty.io/v1
+kind: OpenLibertyApplication
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+spec:
+  networkPolicy:
+    disable: true
+  applicationImage: 'quay.io/victor_carrilho_ibm/frontend'
+  pullPolicy: Always
+  service:
+    port: 9443
+  expose: true
+  env:
+    - name: WLP_LOGGING_MESSAGE_FORMAT
+      value: "json"
+    - name: WLP_LOGGING_MESSAGE_SOURCE
+      value: "message,trace,accessLog,ffdc,audit"
+  probes:
+    startup:
+      failureThreshold: 12
+      httpGet:
+        path: /health/started
+        port: 9443
+        scheme: HTTPS
+      initialDelaySeconds: 30
+      periodSeconds: 2
+      timeoutSeconds: 10
+    liveness:
+      failureThreshold: 12
+      httpGet:
+        path: /health/live
+        port: 9443
+        scheme: HTTPS
+      initialDelaySeconds: 30
+      periodSeconds: 2
+      timeoutSeconds: 10
+    readiness:
+      failureThreshold: 12
+      httpGet:
+        path: /health/ready
+        port: 9443
+        scheme: HTTPS
+      initialDelaySeconds: 30
+      periodSeconds: 2
+      timeoutSeconds: 10
