@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bootstrap
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./argocd
+    targetRevision: main
+    repoURL: https://github.com/it-application-modernization/workshop-leonardo-liberty-ocp.git
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
