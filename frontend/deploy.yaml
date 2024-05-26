@@ -17,6 +17,10 @@ spec:
       value: "json"
     - name: WLP_LOGGING_MESSAGE_SOURCE
       value: "message,trace,accessLog,ffdc,audit"
+    - name: "primo-microservizio-endpoint"
+      value: "https://primo-microservizio:9443/api/primo"
+    - name: "secondo-microservizio-endpoint"
+      value: "https://secondo-microservizio:9443/api/secondo"  
   probes:
     startup:
       failureThreshold: 12

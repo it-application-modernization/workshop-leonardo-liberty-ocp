@@ -13,11 +13,17 @@ import java.util.Scanner;
 @Path("/")
 public class TerzoMicroservizioResource {
 
+
+    private static final StringBuilder endpoint1 = new StringBuilder();
+    private static final StringBuilder endpoint2 = new StringBuilder();
+    private static final StringBuilder endpoint3 = new StringBuilder();
+    private static final StringBuilder endpoint4 = new StringBuilder();
+
     private static final String[] URLs = {
-        "https://primo-microservizio:9443/api/primo/uno",
-        "https://primo-microservizio:9443/api/primo/due",
-        "https://secondo-microservizio:9443/api/secondo/tre",
-        "https://secondo-microservizio:9443/api/secondo/quattro"
+            endpoint1.append(System.getenv("primo-microservizio-endpoint")).append("/uno").toString(),
+            endpoint2.append(System.getenv("primo-microservizio-endpoint")).append("/due").toString(),
+            endpoint3.append(System.getenv("secondo-microservizio-endpoint")).append("/tre").toString(),
+            endpoint4.append(System.getenv("secondo-microservizio-endpoint")).append("/quattro").toString()
     };
 
     @GET
