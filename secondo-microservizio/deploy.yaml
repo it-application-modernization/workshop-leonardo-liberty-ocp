@@ -1,6 +1,7 @@
 apiVersion: apps.openliberty.io/v1
 kind: OpenLibertyApplication
 metadata:
+  namespace: libertydemo
   name: secondo-microservizio
   labels:
     name: secondo-microservizio
